@@ -19,7 +19,7 @@ router.use(function(req, res, next){
 });
 
 router.get('/', function(req, res){
-	res.sendFile(__dirname + "/public/pad.html")
+	res.sendFile(__dirname + "/public/no2e.html")
 });
 
 router.get('/users', function(req, res){
@@ -50,7 +50,11 @@ router.post('/', function(req, res){
 		user2content = req.body.contents;
 	}
 	console.log(req.body.contents);
-	makeDiff(user1content, user2content);
+
+	const diff = makeDiff(user1content, user2content);
+
+    // res.setHeader('Content-Type', 'application/json');
+    res.send(diff);
 });
 
 function makeDiff(string1, string2){
@@ -58,17 +62,9 @@ function makeDiff(string1, string2){
 	var one = string1;
 	var other = string2;
 
-	var diff = jsdiff.diffLines(one, other);
+	var diff = jsdiff.diffWords(one, other);
 
-	diff.forEach(function(part){
-	  // green for additions, red for deletions
-	  // grey for common parts
-	  var color = part.added ? 'green' :
-	    part.removed ? 'red' : 'grey';
-	  process.stderr.write(part.value[color]);
-	});
-
-	console.log();
+	return diff;
 }
 
 module.exports = router;
