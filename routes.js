@@ -10,7 +10,7 @@ router.use(function(req, res, next){
 });
 
 router.get('/', function(req, res){
-	res.sendFile(__dirname + "/public/test.html")
+	res.sendFile(__dirname + "/public/note.html")
 });
 
 module.exports = router;
