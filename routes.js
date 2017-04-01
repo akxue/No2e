@@ -3,13 +3,13 @@ const express = require('express');
 const router = express.Router();
 const assert = require('assert');
 
+var user1content = "";
+var user2content = "";
 var user1 = 0;
 var user2 = 0;
 
 /* Configure router to log */
 router.use(function(req, res, next){
-	if(!user1)
-		res.sendFile(__dirname + "/public/pad.html")
 	console.log('/' + req.method);
 	next();
 });
@@ -19,7 +19,7 @@ router.get('/', function(req, res){
 });
 
 router.post('/', function(req, res){
-	var test = req;
+	user1 = req.body.id;
 	console.log(req.body);
 });
 //
