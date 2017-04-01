@@ -23,8 +23,8 @@
 
 	<script>
 	function init(){
-		var m = 'test';
-		var input = {"ref" : m};
+		var userId = Math.floor(Math.random() * 9999999999).toString();
+		var input = {"id" : userId};
 		console.log('test');
         $.ajax({
             type: "POST",
