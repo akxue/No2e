@@ -2,6 +2,8 @@
 const express = require('express');
 const router = express.Router();
 const assert = require('assert');
+require('colors')
+var jsdiff = require('./public/diff.js');
 
 var user1content = "";
 var user2content = "";
@@ -48,7 +50,25 @@ router.post('/', function(req, res){
 		user2content = req.body.contents;
 	}
 	console.log(req.body.contents);
+	makeDiff(user1content, user2content);
 });
 
+function makeDiff(string1, string2){
+//here we would want to ideally set one and other to whatever is in the notepads
+	var one = string1;
+	var other = string2;
+
+	var diff = jsdiff.diffLines(one, other);
+
+	diff.forEach(function(part){
+	  // green for additions, red for deletions
+	  // grey for common parts
+	  var color = part.added ? 'green' :
+	    part.removed ? 'red' : 'grey';
+	  process.stderr.write(part.value[color]);
+	});
+
+	console.log();
+}
 
 module.exports = router;
