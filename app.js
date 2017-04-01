@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const app = express();
 const routes = require('./routes.js');
 
-
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<title>No2</title>
+</head>
+<body onload="init()">
+	<!-- Basic textarea for now, take input in text  -->
+	<textarea id="input" rows="30" cols="100">Notes!
+	</textarea>
+
+	<!-- Utilize button for now -->
+	<div id="compare">
+		<button style="width: 100px; height: 20px; background: white; z-index: 10000; position: relative; left: 10px; top: 10px" id="compare" type="button" name="button">Compare</button>
+	</div>
+
+	<!-- Area for diff output -->
+	<div id="diffs">
+		<pre id="display"></pre>
+	</div>
+
+	<script>
+	function init(){
+		var contents = 'test';
+		console.log('test');
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8080/",
+            data: contents,
+            success: function(){
+                console.log("success");
+            },
+            error: function(){
+                console.log("fail");
+            }
+        });
+	}
+
+	</script>
+</body>
+
+</html>
