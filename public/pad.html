@@ -4,8 +4,6 @@
 	<meta charset="utf-8" />
 	<!-- jQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="diff.js"></script>
-	<link rel="stylesheet" href="no2e.css"
 	<title>No2</title>
 </head>
 <body onload="init()">
@@ -17,7 +15,10 @@
 		<button style="width: 100px; height: 20px; background: white; z-index: 10000; position: relative; left: 10px; top: 10px" id="compare" type="button" name="button">Compare</button>
 	</div>
 
-	<pre id="display"></pre>
+	<!-- Area for diff output -->
+	<div id="diffs">
+		<pre id="display"></pre>
+	</div>
 
 	<script>
 	var userId = 0;
@@ -41,7 +42,7 @@
 	}
 
 	$("#compare").click(function(e){
-		var contents = $("textarea#input").val();
+	    var contents = $("textarea#input").val();
 	    console.log(contents);
 		var data = {"contents" : contents, "id" : userId}
 
@@ -50,41 +51,20 @@
 	        url: "http://localhost:8080/",
 	        data: JSON.stringify(data),
 			contentType: "application/json",
-	        success: function(result){
-				var color = '',
-					span = null,
-					display = document.getElementById('display'),
-					fragment = document.createDocumentFragment();
-
-				// clear out the html
-				display.innerHTML = '';
-
-				result.forEach(function(part){
-				  // green for additions, red for deletions
-				  // grey for common parts
-				  color = part.added ? 'green' :
-				    part.removed ? 'red' : 'grey';
-				  span = document.createElement('span');
-				  span.style.color = color;
-				  span.appendChild(document
-				    .createTextNode(part.value));
-				  fragment.appendChild(span);
-				  display.appendChild(fragment);
-				});
+	        success: function(){
+	            console.log("success");
 	        },
 	        error: function(){
 	            console.log("fail");
 	        }
 	    });
 	})
+
 	</script>
 
-<<<<<<< HEAD:public/pad.html
 <pre id="display"></pre>
 
 
-=======
->>>>>>> refs/remotes/origin/master:public/no2e.html
 </body>
 
 </html>
