@@ -89,10 +89,12 @@ function init() {
     // Send the server our url
     function sendRef(fireRef){
         var contents = fireRef.toString();
+        var posturl = "http://localhost:8080/" + userId;
+        console.log(posturl)
 
         $.ajax({
             type: "POST",
-            url: "http://localhost:8080/",
+            url: posturl,
             data: contents,
             success: function(){
                 console.log("success");
