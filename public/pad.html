@@ -66,6 +66,7 @@
 
 <pre id="display"></pre>
 <script src="diff.js"></script>
+<<<<<<< HEAD
 	<script>
 	//here we would want to ideally set one and other to whatever is in the notepads
 	var one = 'beep boop',
@@ -90,7 +91,34 @@
 	});
 
 	display.appendChild(fragment);
+=======
+<script>
+
+var one = 'beep boop',
+    other = 'beep boob blah',
+    color = '',
+    span = null;
+
+var diff = JsDiff.diffLines(one, other),
+    display = document.getElementById('display'),
+    fragment = document.createDocumentFragment();
+
+diff.forEach(function(part){
+  // green for additions, red for deletions
+  // grey for common parts
+  color = part.added ? 'green' :
+    part.removed ? 'red' : 'grey';
+  span = document.createElement('span');
+  span.style.color = color;
+  span.appendChild(document
+    .createTextNode(part.value));
+  fragment.appendChild(span);
+});
+
+display.appendChild(fragment);
+>>>>>>> bf051aa74f34e51bed50136e18695c8a3469129c
 </script>
+<!--<script src = "difference.js"></script>-->
 
 
 </body>
