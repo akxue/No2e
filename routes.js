@@ -44,17 +44,18 @@ router.post('/user', function(req, res){
 });
 
 router.post('/', function(req, res){
+	var diff;
+
 	if (req.body.id == user1){
 		user1content = req.body.contents;
+		diff = makeDiff(user2content, user1content);
 	} else if (req.body.id == user2){
 		user2content = req.body.contents;
+		diff = makeDiff(user1content, user2content);
 	}
+
 	console.log(req.body.contents);
-
-	const diff = makeDiff(user1content, user2content);
-
-    // res.setHeader('Content-Type', 'application/json');
-    res.send(diff);
+	res.send(diff);
 });
 
 function makeDiff(string1, string2){
