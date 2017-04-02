@@ -15,7 +15,7 @@
 	</ul>
 
 	<!-- Basic textarea for now, take input in text  -->
-	<textarea id="input" rows="30" cols="100">Notes!</textarea>
+	<textarea onchange="update()" id="input" rows="30" cols="100">Notes! </textarea>
 
 	<!-- Utilize button for now -->
 	<div id="compare">
@@ -45,10 +45,51 @@
         });
 	}
 
+
+	function update(){
+		console.log("Update is being called");
+		var contents = $("textarea#input").val();
+		console.log(contents);
+		var data = {"contents" : contents, "id" : userId};
+
+	    $.ajax({
+	        type: "POST",
+	        url: "http://localhost:8080/",
+	        data: JSON.stringify(data),
+			contentType: "application/json",
+	        success: function(result){
+				var color = '',
+					span = null,
+					display = document.getElementById('display'),
+					fragment = document.createDocumentFragment();
+
+				// clear out the html
+				display.innerHTML = '';
+
+				result.forEach(function(part){
+				  // green for additions, red for deletions
+				  // grey for common parts
+				  color = part.added ? 'green' :
+				    part.removed ? 'red' : 'grey';
+				  span = document.createElement('span');
+				  span.style.color = color;
+				  span.appendChild(document
+				    .createTextNode(part.value));
+				  fragment.appendChild(span);
+				  display.appendChild(fragment);
+				});
+	        },
+	        error: function(){
+	            console.log("fail");
+	        }
+	    });
+	}
+
+
 	$("#compare").click(function(e){
 		var contents = $("textarea#input").val();
-	    console.log(contents);
-		var data = {"contents" : contents, "id" : userId}
+		console.log(contents);
+		var data = {"contents" : contents, "id" : userId};
 
 	    $.ajax({
 	        type: "POST",
