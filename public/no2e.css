@@ -10,10 +10,6 @@ ul {
     background-color: #333;
 }
 
-li {
-    float: left;
-}
-
 li a {
 	font-family: "Segoe UI", sans-serif;
     display: block;
@@ -27,13 +23,32 @@ li a:hover {
     background-color: #111;
 }
 
-textarea{
-	padding-top: 50px;
+li#name{
+	position: absolute;
+	left: 10%;
+}
 
+textarea{
+	margin-top: 50px;
+	margin-left: 10px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+    background: rgba(255,255,255,.1);
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 7px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    background-color: #e8eeef;
+    color:#8a97a0;
+    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    margin-bottom: 30px;
 }
 
 pre{
-	padding-top: 20px;
+	margin-top: 20px;
 	postiion: relative;
-	top: 50%;
+	margin-left: 10px;
 }
